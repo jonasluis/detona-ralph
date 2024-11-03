@@ -1,5 +1,7 @@
 .container {
     display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .menu {
@@ -15,5 +17,25 @@
 
 
 .menu-time__text {
-    color: #ff0404;
+    color: #ff0000;
+}
+
+.panel {
+
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid  #ff0000 ;
+}
+
+.square {
+    height: 150px;
+    width: 150px;
+    border: 1px solid #000000;
+    background-color: #06c9fa;
+}
+
+.enemy {
+    background-color: #ff0000;
 }
