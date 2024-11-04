@@ -17,6 +17,10 @@
     border-bottom: 0.3em solid #ffd700;
 }
 
+.menu-time h2:nth-child(2),
+.menu-score h2:nth-child(2) {
+    margin-top: 0.5em;
+}
 
 .menu-time__text {
     color: #ff0000;
