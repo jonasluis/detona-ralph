@@ -29,8 +29,17 @@ function countDown(){
     if (state.values.currentTime <= 0) {
         clearInterval(state.actions.countDownTimerId)
         clearInterval(state.values.timerId)
-        alert("Game Over! O seu resultado foi: " + state.values.result);
+        alert("O tempo acabou! O seu resultado foi: " + state.values.result);
     }
+}
+
+function playSound(audioHit) {
+    //pega o som
+    let audio = new Audio(`./src/audios/${audioHit}.m4a`)
+    //define o volume
+    audio.volume = 0.1;
+    //toca o audio
+    audio.play()
 }
 
 //escole o quadrado aleatorio para sortear o inimigo
@@ -67,6 +76,8 @@ function addListenerHitBox() {
                 state.view.score.textContent = state.values.result;
                 //nao deixa o usuario clicar mais de uma vez na caixa 
                 state.values.hitPosition = null;
+                //toca o som quando o enemy for clicado
+                playSound("hit")
             }
         })
     })
