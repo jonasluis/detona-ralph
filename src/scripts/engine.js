@@ -8,6 +8,8 @@ const state = {
     values: {
         timerId: null,
         gameVelocity: 1000,
+        hitPosition: 0,
+        result: 0,
     },
 }
 
@@ -23,6 +25,8 @@ function randomSquare() {
     let randomSquare = state.view.squares[randomNumber];
     //adiciona a classe enemy no quadrado aleatorio
     randomSquare.classList.add("enemy")
+    //guarda a posicao do quadrado aleatorio
+    state.values.hitPosition = randomSquare.id
 }
 //move o enemy para o quadrado aleatorio
 function moveEnemy() {
@@ -32,13 +36,27 @@ function moveEnemy() {
 
 // Verifica se o quadrado que estamos clicando eh o mesmo quadrado que tem um inimigo
 function addListenerHitBox() {
-    state.view.squares.forEach((square)=> {})
+    state.view.squares.forEach((square)=> {
+        //define um evento para quando o mouse ser clicado
+        square.addEventListener("mousedown", () => {
+            //verifica se o lugar clicado tem um enemy
+            if(square.id === state.values.hitPosition){
+                //adiciona +1 no resultado
+                state.values.result++
+                //altera a visualisacao do score
+                state.view.score.textContent = state.values.result;
+                //nao deixa o usuario clicar mais de uma vez na caixa 
+                state.values.hitPosition = null;
+            }
+        })
+    })
 }
 
 //modo que inicio o programa
 function init() {
 
-    moveEnemy()
+    moveEnemy();
+    addListenerHitBox();
 }
 
 init()
