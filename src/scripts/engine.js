@@ -7,10 +7,30 @@ const state = {
     },
     values: {
         timerId: null,
+        
         gameVelocity: 1000,
         hitPosition: 0,
         result: 0,
+        currentTime: 60,
     },
+    actions: {
+        //define um intervalo para diminuir o tempo
+        countDownTimerId: setInterval(countDown, 1000),
+    }
+}
+
+function countDown(){
+    //diminui 1 segundo
+    state.values.currentTime--;
+    //altera a visualisacao do time
+    state.view.timeLeft.textContent = state.values.currentTime;
+
+    //alerta quando o tempo acabar
+    if (state.values.currentTime <= 0) {
+        clearInterval(state.actions.countDownTimerId)
+        clearInterval(state.values.timerId)
+        alert("Game Over! O seu resultado foi: " + state.values.result);
+    }
 }
 
 //escole o quadrado aleatorio para sortear o inimigo
